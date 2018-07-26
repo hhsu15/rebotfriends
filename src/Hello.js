@@ -15,14 +15,15 @@ class Hello extends Component {
 			// use tachyons here, use classNmae 
 			// search the className you can use on their website
 			 <div className="vh-100 dt w-100 tc bg-dark-gray white cover" style={{backgroundImage: `url(http://mrmrs.github.io/photos/u/009.jpg`}} >
-
-				<h1 className='f3 f-headline-l fw1 i tc'>Hello World</h1>
-				<h2>Ha it works!!! Welcome to React</h2>
-				<h2>Is tachyons working???</h2>
-				<h2>Now it's working</h2>
-				<h2>this is from the props : {this.props.greetings}</h2>
-				<div class="aspect-ratio aspect-ratio--1x1">
-					What does this look like?
+			 	<div class="dtc v-mid">
+					<h1 className='f3 f-headline-l fw1 i tc'>Hello World</h1>
+					<h2 class="f3 f-headline-l fw1 i white-90">Ha it works!!! Welcome to React</h2>
+					<h2>Is tachyons working???</h2>
+					<h2>Now it's working</h2>
+					<h2>this is from the props : {this.props.greetings}</h2>
+					<div class="aspect-ratio aspect-ratio--1x1">
+						<p>What does this look like?</p>
+	    			</div>
     			</div>
 			</div>
 			)
