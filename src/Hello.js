@@ -14,7 +14,8 @@ class Hello extends Component {
 
 			// use tachyons here, use classNmae 
 			// search the className you can use on their website
-			<div className='f3 tc'> 
+			 <div className="vh-100 dt w-100 tc bg-dark-gray white cover" style={{backgroundImage: `url(http://mrmrs.github.io/photos/u/009.jpg`}} >
+
 				<h1 className='f3 f-headline-l fw1 i tc'>Hello World</h1>
 				<h2>Ha it works!!! Welcome to React</h2>
 				<h2>Is tachyons working???</h2>
