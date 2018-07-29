@@ -24,5 +24,15 @@ export const robots = [
 	 username: 'tsin',
 	 email:'timjn@gmail.com',
 	},
+	{id:6,
+	 name: 'Kyle',
+	 username: 'kylehsu',
+	 email:'kyle@gmail.com',
+	},
+	{id:7,
+	 name: 'Jess',
+	 username: 'jessica',
+	 email:'jess@gmail.com',
+	},
 ]
 

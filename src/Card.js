@@ -22,7 +22,7 @@ export default Card;
 */
 
 // or we can define a class
-class Card extends Component{ //destructuring
+class Card extends Component{
 	render(){
 	return(
 		   //background   dib(autoadjust size) border3 padding3 margin2 grow(animation) whilte text, bw? and some shadow
