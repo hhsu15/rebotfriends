@@ -38,9 +38,22 @@ class App extends Component {
   constructor() {
     super()
     this.state =  {
-      robots: robots,
+      robots: [], // initialize with empty arr, lets use api
       searchfield: '' //just initialize the searchfield var
     }
+  }
+  
+  // react built-in method, 
+  // this gets called when Statec hanges
+  componentDidMount(){ 
+    fetch('https://jsonplaceholder.typicode.com/users') //make API call
+      .then(response=>{
+      return response.json();
+    })
+      .then(users => {
+        this.setState({ robots: users })
+      });
+
   }
   
   // rule of thumb: when you define your own method in react component,
@@ -58,7 +71,7 @@ class App extends Component {
 
     return(
       <div className='tc'>
-        <h1 className='f2 f-headline-l fw1 i tc'>RobotFriends</h1>
+        <h1 className='f1 f-headline-l fw1 i tc white'>RobotFriends</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <Cardlist robot_array={ filterRobots }/>
       </div>
