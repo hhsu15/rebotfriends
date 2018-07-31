@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
-import Cardlist from './Cardlist';
-import { robots } from './robots';
+import Cardlist from '../components/Cardlist';
+import { robots } from '../robots';
 import 'tachyons';
-import SearchBox from './SearchBox';
+import SearchBox from '../components/SearchBox';
+import Scroll from '../components/Scroll';
 
 
 // class App extends Component {
@@ -43,17 +44,14 @@ class App extends Component {
     }
   }
   
-  // react built-in method, 
-  // this gets called when Statec hanges
+  // react built-in method, like constructor, render, they are called lifecycle hooks
+  // this gets called when the components are mounted and 
+  // website rendered something
+  // see: https://reactjs.org/docs/react-component.html
   componentDidMount(){ 
     fetch('https://jsonplaceholder.typicode.com/users') //make API call
-      .then(response=>{
-      return response.json();
-    })
-      .then(users => {
-        this.setState({ robots: users })
-      });
-
+      .then(response => response.json())
+      .then(users => this.setState({ robots: users }));
   }
   
   // rule of thumb: when you define your own method in react component,
@@ -65,19 +63,26 @@ class App extends Component {
   }
 
   render() {
-    const filterRobots = this.state.robots.filter(robot=>{
-      return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+    const { robots, searchfield } = this.state;
+    const filterRobots = robots.filter(robot => {
+      return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
-
-    return(
-      <div className='tc'>
-        <h1 className='f1 f-headline-l fw1 i tc white'>RobotFriends</h1>
-        <SearchBox searchChange={this.onSearchChange}/>
-        <Cardlist robot_array={ filterRobots }/>
-      </div>
+    
+    //show off ternary operator
+    return !robots.length ? 
+      <h1>Loading..</h1> :
+      (
+        <div className='tc'>
+          <h1 className='f1 f-headline-l fw1 i tc white'>RobotFriends</h1>
+          <SearchBox searchChange={this.onSearchChange}/>
+          <Scroll>
+            <Cardlist robot_array={ filterRobots }/>
+          </Scroll> 
+        </div>
       )
-  }
+    }
 }
+
 
 
 export default App;
