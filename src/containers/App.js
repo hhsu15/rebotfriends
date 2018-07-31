@@ -6,7 +6,7 @@ import { robots } from '../robots';
 import 'tachyons';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
-
+import ErrorBoundry from '../components/ErrorBoundry'
 
 // class App extends Component {
 //   render() {
@@ -76,7 +76,9 @@ class App extends Component {
           <h1 className='f1 f-headline-l fw1 i tc white'>RobotFriends</h1>
           <SearchBox searchChange={this.onSearchChange}/>
           <Scroll>
-            <Cardlist robot_array={ filterRobots }/>
+            <ErrorBoundry>
+              <Cardlist robot_array={ filterRobots }/>
+            </ErrorBoundry>
           </Scroll> 
         </div>
       )
