@@ -8,32 +8,6 @@ import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundry from '../components/ErrorBoundry'
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
-
-
-
-// export default App;
-// We introduce to the notion of "STATE"
-// State is an object that describes your App
-// i.,e in this app, State is what the components are 
-// and what are the props for each component
-// STATE => props (a parent feeds the state/props into a child)
-
-// Let's declear the STATE
 
 class App extends Component {
   constructor() {
@@ -49,6 +23,7 @@ class App extends Component {
   // website rendered something
   // see: https://reactjs.org/docs/react-component.html
   componentDidMount(){ 
+    console.log(this.props.store) //check what store is
     fetch('https://jsonplaceholder.typicode.com/users') //make API call
       .then(response => response.json())
       .then(users => this.setState({ robots: users }));
