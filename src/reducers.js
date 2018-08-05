@@ -5,7 +5,9 @@ const initialstate = {
 }
 
 // the reducer is a function that takes the state and the action
+// and return the updated state!! very importtant
 export const searchRobots = (state=initialstate, action={}) => {
+	// console.log(action.type)
 	switch (action.type) {
 		case CHANGE_SEARCH_FIELD:
 
