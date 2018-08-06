@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import logo from '../logo.svg';
 import './App.css';
 import Cardlist from '../components/Cardlist';
-// import { robots } from '../robots';
 import 'tachyons';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
@@ -25,7 +23,6 @@ const mapStateToProps = state => {
 // dispatch is something that triggers the action
 // we use dispatch to send the action into the reducer
 const mapDispatchToProps = (dispatch) => {
-  console.log('i am mapDispatchToProps')
   return {
     //this is an input box user types
     onSearchChange: (event) => dispatch(setSearchField(event.target.value))
