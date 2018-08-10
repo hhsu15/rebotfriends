@@ -10,13 +10,16 @@ import ErrorBoundry from '../components/ErrorBoundry'
 // we need to pass those smart components so they are subsribed 
 // when the states are changed
 import { connect } from 'react-redux';
-import { setSearchField } from '../actions'
+import { setSearchField, requestRobots } from '../actions'
 
 // the state is coming from the "store" from the Provider
 const mapStateToProps = state => {
   console.log('state:',state)
   return {
-    searchField: state.searchField
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error
   }
 }
 
@@ -25,18 +28,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //this is an input box user types
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots())
   }
 } 
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state =  {
-      robots: [], // initialize with empty arr, lets use api
-      //searchfield: '' //just initialize the searchfield var
-    }
-  }
+  
+  //no need the constructor for states anymore 
   
   // react built-in method, like constructor, render, they are called lifecycle hooks
   // this gets called when the components are mounted and 
@@ -44,9 +43,7 @@ class App extends Component {
   // see: https://reactjs.org/docs/react-component.html
   componentDidMount(){ 
     // console.log(this.props.store) //check what store is
-    fetch('https://jsonplaceholder.typicode.com/users') //make API call
-      .then(response => response.json())
-      .then(users => this.setState({ robots: users }));
+    this.props.onRequestRobots()
   }
   
   // rule of thumb: when you define your own method in react component,
@@ -58,17 +55,16 @@ class App extends Component {
   // }
 
   render() {
-    const { robots } = this.state;
     // I have access to this.props which has the state I need
     // every time the search field changes this gets hit
     console.log('props: ',this.props)
-    const { searchField, onSearchChange } = this.props;
+    const { searchField, onSearchChange, robots, isPending } = this.props;
     const filterRobots = robots.filter(robot => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
     
     //show off ternary operator
-    return !robots.length ? 
+    return isPending ? 
       <h1>Loading..</h1> :
       (
         <div className='tc'>

@@ -1,12 +1,16 @@
-import { CHANGE_SEARCH_FIELD } from './constants'
+import { CHANGE_SEARCH_FIELD,
+		 REQUEST_ROBOTS_PENDING,
+		 REQUEST_ROBOTS_SUCCESS,
+		 REQUEST_ROBOTS_FAILED,
+ } from './constants.js'
 
-const initialstate = {
+const initialstateSearch = {
 	searchField : ''
 }
 
 // the reducer is a function that takes the state and the action
 // and return the updated state!! very importtant
-export const searchRobots = (state=initialstate, action={}) => {
+export const searchRobots = (state=initialstateSearch, action={}) => {
 	// console.log(action.type)
 	switch (action.type) {
 		case CHANGE_SEARCH_FIELD:
@@ -23,5 +27,24 @@ export const searchRobots = (state=initialstate, action={}) => {
         default:
         	return state
 
+	}
+}
+
+const initialstateRobots = {
+	isPending : false, 
+	robots: [],
+	error:''
+}
+
+export const requestRobots = (state=initialstateRobots, action={}) => {
+	switch (action.type) {
+		case REQUEST_ROBOTS_PENDING:
+			return Object.assign({}, state, {isPending:true})
+	    case REQUEST_ROBOTS_SUCCESS:
+	    	return Object.assign({}, state, { robots:action.payload, isPending:false})
+	    case REQUEST_ROBOTS_FAILED:
+	    	return Object.assign({}, state, { error:action.payload, isPending:false})		
+	    default:
+	    	return state; //with reducer, always return state
 	}
 }
