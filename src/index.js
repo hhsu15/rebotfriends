@@ -25,6 +25,7 @@ const store =
 	createStore(rootReducer, 
 				applyMiddleware(thunkMiddleware, logger))
 
+console.log('Request:', document.getElementById('robot_name').innerHTML)
 
 // now we use Provide and pass the store to the App
 ReactDOM.render(
